@@ -21,7 +21,7 @@ public final class Account {
     @Getter
     private String password;
 
-    private Set<FavouriteLocation> favourites;
+    private Set<Location> favourites;
 
     public Account(String name, String password) {
         this.name = name;
@@ -30,26 +30,26 @@ public final class Account {
         this.favourites = new HashSet<>();
     }
 
-    public boolean addToFavourites(FavouriteLocation location) {
+    public boolean addToFavourites(Location location) {
         return favourites.add(location);
     }
 
-    public boolean removeFromFavourites(FavouriteLocation location) {
+    public boolean removeFromFavourites(Location location) {
         return favourites.remove(location);
     }
 
-    public List<FavouriteLocation> getAllFavourites() {
+    public List<Location> getAllFavourites() {
         return favourites.stream()
                        .toList();
     }
 
-    public Optional<FavouriteLocation> getFavouriteById(Long id) {
+    public Optional<Location> getFavouriteById(Long id) {
         return favourites.stream()
                        .filter(location -> location.getId().equals(id))
                        .findFirst();
     }
 
-    public Optional<FavouriteLocation> getFavouriteByCoordinates(BigDecimal latitude, BigDecimal longitude) {
+    public Optional<Location> getFavouriteByCoordinates(BigDecimal latitude, BigDecimal longitude) {
         return favourites.stream()
                        .filter(location -> location.isSameAs(latitude, longitude))
                        .findFirst();

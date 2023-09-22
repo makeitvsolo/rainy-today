@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @AllArgsConstructor
-public final class FavouriteLocation {
+public final class Location {
 
     private static final int DEFAULT_SCALE = 2;
 
@@ -23,7 +23,7 @@ public final class FavouriteLocation {
     @Getter
     private BigDecimal longitude;
 
-    public FavouriteLocation(String name, BigDecimal latitude, BigDecimal longitude) {
+    public Location(String name, BigDecimal latitude, BigDecimal longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -42,7 +42,7 @@ public final class FavouriteLocation {
             return true;
         }
 
-        if (!(obj instanceof FavouriteLocation other)) {
+        if (!(obj instanceof Location other)) {
             return false;
         }
 

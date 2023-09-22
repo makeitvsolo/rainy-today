@@ -29,7 +29,7 @@ public class AccountTests {
     @DisplayName("when favourites is empty")
     public class WhenFavouritesIsEmpty {
 
-        private FavouriteLocation location;
+        private Location location;
 
         @BeforeEach
         public void beforeEach() {
@@ -37,7 +37,7 @@ public class AccountTests {
             var password = "password";
 
             account = new Account(name, password);
-            location = new FavouriteLocation("name", BigDecimal.ZERO, BigDecimal.ZERO);
+            location = new Location("name", BigDecimal.ZERO, BigDecimal.ZERO);
         }
 
         @Test
@@ -56,11 +56,11 @@ public class AccountTests {
         @DisplayName("when location added to favourites")
         public class WhenLocationAddedToFavourites {
 
-            private FavouriteLocation existingLocation;
+            private Location existingLocation;
 
             @BeforeEach
             public void beforeEach() {
-                existingLocation = new FavouriteLocation("name", BigDecimal.ZERO, BigDecimal.ZERO);
+                existingLocation = new Location("name", BigDecimal.ZERO, BigDecimal.ZERO);
 
                 account.addToFavourites(existingLocation);
             }
