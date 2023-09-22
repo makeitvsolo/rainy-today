@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -23,9 +24,11 @@ public final class Account {
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
+
+        this.favourites = new HashSet<>();
     }
 
-    public boolean addToFavourite(FavouriteLocation location) {
+    public boolean addToFavourites(FavouriteLocation location) {
         return favourites.add(location);
     }
 
