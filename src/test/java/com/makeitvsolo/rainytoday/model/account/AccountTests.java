@@ -1,4 +1,4 @@
-package com.makeitvsolo.rainytoday.model.favourite;
+package com.makeitvsolo.rainytoday.model.account;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
