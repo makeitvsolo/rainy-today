@@ -1,12 +1,7 @@
 package com.makeitvsolo.rainytoday.datasource;
 
 import com.makeitvsolo.rainytoday.model.account.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface AccountRepository {
-
-    void save(Account account);
-
-    Optional<Account> findById(Long id);
+public interface AccountRepository extends JpaRepository<Account, Long> {
 }
