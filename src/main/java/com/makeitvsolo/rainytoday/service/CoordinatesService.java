@@ -6,12 +6,12 @@ import com.makeitvsolo.rainytoday.service.mapping.CoordinatesMapper;
 
 import java.util.List;
 
-public final class SearchCoordinatesService {
+public final class CoordinatesService {
 
     private final CoordinatesRepository repository;
     private final CoordinatesMapper mapper;
 
-    public SearchCoordinatesService(CoordinatesRepository repository, CoordinatesMapper mapper) {
+    public CoordinatesService(CoordinatesRepository repository, CoordinatesMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
