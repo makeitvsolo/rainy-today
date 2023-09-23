@@ -26,9 +26,6 @@ public class WeatherController {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                            .body(service.getWeatherOnFavouriteLocations(principal.getAccountId()));
-        } catch (AccountDoesNotExistsException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                           .body(new ErrorMessageResponse(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.internalServerError()
                            .build();

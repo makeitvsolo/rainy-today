@@ -43,9 +43,6 @@ public class FavouriteLocationController {
         } catch (AlreadyInFavouritesException ex) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                            .body(new ErrorMessageResponse(ex.getMessage()));
-        } catch (AccountDoesNotExistsException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                           .body(new ErrorMessageResponse(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.internalServerError()
                            .build();
@@ -68,9 +65,6 @@ public class FavouriteLocationController {
                            .build();
         } catch (NotInFavouritesException ex) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                           .body(new ErrorMessageResponse(ex.getMessage()));
-        } catch (AccountDoesNotExistsException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                            .body(new ErrorMessageResponse(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.internalServerError()
