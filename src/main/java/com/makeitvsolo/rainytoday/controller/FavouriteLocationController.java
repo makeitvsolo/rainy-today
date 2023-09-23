@@ -1,5 +1,6 @@
 package com.makeitvsolo.rainytoday.controller;
 
+import com.makeitvsolo.rainytoday.config.security.AccountPrincipal;
 import com.makeitvsolo.rainytoday.controller.request.favourite.AddFavouriteRequest;
 import com.makeitvsolo.rainytoday.controller.response.ErrorMessageResponse;
 import com.makeitvsolo.rainytoday.service.FavouriteLocationService;
@@ -10,6 +11,7 @@ import com.makeitvsolo.rainytoday.service.exception.favourite.AlreadyInFavourite
 import com.makeitvsolo.rainytoday.service.exception.favourite.NotInFavouritesException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,10 +25,16 @@ public class FavouriteLocationController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody AddFavouriteRequest request) {
+    public ResponseEntity<?> add(
+            @RequestBody AddFavouriteRequest request,
+            @AuthenticationPrincipal AccountPrincipal principal
+    ) {
         try {
             var payload = new AddFavouriteLocationDto(
-
+                    principal.getAccountId(),
+                    request.getName(),
+                    request.getLatitude(),
+                    request.getLongitude()
             );
 
             service.addLocationToFavourites(payload);
@@ -45,9 +53,15 @@ public class FavouriteLocationController {
     }
 
     @DeleteMapping("/{id}/remove")
-    public ResponseEntity<?> remove(@PathVariable(name = "id") Long locationId) {
+    public ResponseEntity<?> remove(
+            @PathVariable(name = "id") Long locationId,
+            @AuthenticationPrincipal AccountPrincipal principal
+    ) {
         try {
-            var payload = new RemoveFavouriteLocationDto();
+            var payload = new RemoveFavouriteLocationDto(
+                    principal.getAccountId(),
+                    locationId
+            );
 
             service.removeLocationFromFavourites(payload);
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
