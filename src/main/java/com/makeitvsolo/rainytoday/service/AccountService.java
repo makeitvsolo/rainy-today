@@ -3,6 +3,7 @@ package com.makeitvsolo.rainytoday.service;
 import com.makeitvsolo.rainytoday.datasource.AccountRepository;
 import com.makeitvsolo.rainytoday.model.account.Account;
 import com.makeitvsolo.rainytoday.service.dto.account.AccountDto;
+import com.makeitvsolo.rainytoday.service.dto.account.CreateAccountDto;
 import com.makeitvsolo.rainytoday.service.exception.account.AccountAlreadyExistsException;
 import com.makeitvsolo.rainytoday.service.exception.account.AccountDoesNotExistsException;
 import com.makeitvsolo.rainytoday.service.mapping.AccountMapper;
@@ -20,7 +21,7 @@ public final class AccountService {
         this.mapper = mapper;
     }
 
-    public void createAccount(AccountDto payload) {
+    public void createAccount(CreateAccountDto payload) {
         if (repository.existsByName(payload.getName())) {
             throw new AccountAlreadyExistsException(payload.getName());
         }
