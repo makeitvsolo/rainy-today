@@ -7,6 +7,7 @@ import com.makeitvsolo.rainytoday.datasource.openweather.mapping.OpenWeatherCoor
 import com.makeitvsolo.rainytoday.model.weather.Coordinates;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.text.MessageFormat;
 import java.util.List;
 
+@Component
 public final class OpenWeatherCoordinatesRepository implements CoordinatesRepository {
 
     private String baseUrl;
