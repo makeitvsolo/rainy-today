@@ -8,7 +8,9 @@ import com.makeitvsolo.rainytoday.service.exception.account.AccountAlreadyExists
 import com.makeitvsolo.rainytoday.service.exception.account.AccountDoesNotExistsException;
 import com.makeitvsolo.rainytoday.service.mapping.AccountMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public final class AccountService {
 
     private final AccountRepository repository;

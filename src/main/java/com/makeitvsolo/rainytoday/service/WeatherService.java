@@ -5,9 +5,11 @@ import com.makeitvsolo.rainytoday.datasource.WeatherRepository;
 import com.makeitvsolo.rainytoday.service.dto.weather.WeatherDto;
 import com.makeitvsolo.rainytoday.service.exception.account.AccountDoesNotExistsException;
 import com.makeitvsolo.rainytoday.service.mapping.WeatherMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public final class WeatherService {
 
     private final AccountRepository accountRepository;

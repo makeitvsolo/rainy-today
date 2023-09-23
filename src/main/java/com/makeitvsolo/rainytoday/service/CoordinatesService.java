@@ -3,9 +3,11 @@ package com.makeitvsolo.rainytoday.service;
 import com.makeitvsolo.rainytoday.datasource.CoordinatesRepository;
 import com.makeitvsolo.rainytoday.service.dto.coordinate.CoordinatesDto;
 import com.makeitvsolo.rainytoday.service.mapping.CoordinatesMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public final class CoordinatesService {
 
     private final CoordinatesRepository repository;
