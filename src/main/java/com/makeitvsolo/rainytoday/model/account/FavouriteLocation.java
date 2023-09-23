@@ -1,23 +1,42 @@
 package com.makeitvsolo.rainytoday.model.account;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(
+        name = "favourites",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"latitude", "longitude"}),
+        indexes = @Index(columnList = "latitude, longitude", unique = true)
+)
 @AllArgsConstructor
+@NoArgsConstructor
 public final class FavouriteLocation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
+    @Setter
     private Long id;
 
+    @Column(name = "name", nullable = false)
     @Getter
+    @Setter
     private String name;
 
+    @Column(name = "latitude", nullable = false)
     @Getter
+    @Setter
     private BigDecimal latitude;
 
+    @Column(name = "longitude", nullable = false)
     @Getter
+    @Setter
     private BigDecimal longitude;
 
     public FavouriteLocation(String name, BigDecimal latitude, BigDecimal longitude) {
