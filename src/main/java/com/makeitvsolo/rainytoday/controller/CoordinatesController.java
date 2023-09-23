@@ -1,8 +1,10 @@
 package com.makeitvsolo.rainytoday.controller;
 
+import com.makeitvsolo.rainytoday.config.security.AccountPrincipal;
 import com.makeitvsolo.rainytoday.service.CoordinatesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +21,10 @@ public class CoordinatesController {
     }
 
     @GetMapping("/location")
-    public ResponseEntity<?> searchLocation(@RequestParam("name") String locationName) {
+    public ResponseEntity<?> searchLocation(
+            @RequestParam("name") String locationName,
+            @AuthenticationPrincipal AccountPrincipal principal
+            ) {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                            .body(service.searchCoordinatesByName(locationName));
