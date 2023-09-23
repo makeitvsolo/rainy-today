@@ -20,7 +20,7 @@ import static org.mockito.MockitoAnnotations.*;
 import static org.mockito.Mockito.*;
 
 @DisplayName("FavouriteLocationService")
-public final class FavouriteLocationServiceTests {
+public class FavouriteLocationServiceTests {
 
     private FavouriteLocationService service;
 
