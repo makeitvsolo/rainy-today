@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -39,6 +40,11 @@ public final class Account {
     public boolean isInFavourites(BigDecimal latitude, BigDecimal longitude) {
         return favourites.stream()
                        .anyMatch(location -> location.isSameAs(latitude, longitude));
+    }
+
+    public List<FavouriteLocation> getAllFavourites() {
+        return favourites.stream()
+                       .toList();
     }
 
     @Override
