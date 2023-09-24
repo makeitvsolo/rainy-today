@@ -91,8 +91,7 @@ public class AccountServiceTests {
 
             expectedAccountDto = new AccountDto(
                     0L,
-                    existingAccount.getName(),
-                    existingAccount.getPassword()
+                    existingAccount.getName()
             );
         }
 

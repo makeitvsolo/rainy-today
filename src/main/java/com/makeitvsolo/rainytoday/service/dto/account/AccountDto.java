@@ -9,5 +9,4 @@ public final class AccountDto {
 
     private final Long id;
     private final String name;
-    private final String password;
 }
