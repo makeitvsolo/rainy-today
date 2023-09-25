@@ -4,7 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 @Component
 public class JwtEncoder {
@@ -21,7 +23,7 @@ public class JwtEncoder {
         return JWT.create()
                        .withSubject(String.valueOf(accountId))
                        .withIssuedAt(now)
-                       .withExpiresAt(now.plus(properties.getDuration()))
+                       .withExpiresAt(now.plus(Duration.of(properties.getExpirationMinutes(), ChronoUnit.MINUTES)))
                        .withClaim("account_name", accountName)
                        .sign(Algorithm.HMAC256(properties.getSecretKey()));
     }

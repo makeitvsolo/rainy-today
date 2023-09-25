@@ -5,6 +5,7 @@ import com.makeitvsolo.rainytoday.datasource.openweather.dto.weather.OpenWeather
 import com.makeitvsolo.rainytoday.datasource.openweather.exception.OpenWeatherException;
 import com.makeitvsolo.rainytoday.datasource.openweather.mapping.OpenWeatherMapper;
 import com.makeitvsolo.rainytoday.model.weather.Weather;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -16,9 +17,14 @@ import java.text.MessageFormat;
 @Component
 public final class OpenWeatherRepository implements WeatherRepository {
 
+    @Value("${openweather.host.baseUrl}")
     private String baseUrl;
+
+    @Value("${openweather.host.appid}")
     private String appId;
+
     private final RestTemplate restTemplate;
+
     private final OpenWeatherMapper mapper;
 
     public OpenWeatherRepository(RestTemplate restTemplate, OpenWeatherMapper mapper) {
