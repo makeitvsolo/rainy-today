@@ -13,15 +13,24 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter authFilter;
     private final AccountDetailsService detailsService;
+    private final UnauthorizedHandler unauthorizedHandler;
 
-    public SecurityConfig(AccountDetailsService detailsService) {
+    public SecurityConfig(
+            JwtAuthenticationFilter authFilter,
+            AccountDetailsService detailsService,
+            UnauthorizedHandler unauthorizedHandler
+    ) {
+        this.authFilter = authFilter;
         this.detailsService = detailsService;
+        this.unauthorizedHandler = unauthorizedHandler;
     }
 
     @Bean
@@ -38,10 +47,13 @@ public class SecurityConfig {
                 .securityMatcher("/api/v1/**")
                 .authorizeHttpRequests(
                         registry -> {
-                            registry.requestMatchers("/sign-in", "/sign-up").permitAll();
+                            registry.requestMatchers("api/v1/access/**").permitAll();
                             registry.anyRequest().authenticated();
                         }
-                );
+                )
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
+
+        http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

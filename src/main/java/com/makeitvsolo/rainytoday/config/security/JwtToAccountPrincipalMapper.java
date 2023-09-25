@@ -11,7 +11,7 @@ public class JwtToAccountPrincipalMapper {
     public AccountPrincipal convert(DecodedJWT jwt) {
         return AccountPrincipal.builder()
                        .authorities(List.of())
-                       .accountId(Long.parseLong(jwt.getIssuer()))
+                       .accountId(Long.parseLong(jwt.getSubject()))
                        .accountName(jwt.getClaim("account_name").asString())
                        .build();
     }

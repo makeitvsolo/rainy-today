@@ -9,6 +9,13 @@ import com.makeitvsolo.rainytoday.service.dto.favourite.RemoveFavouriteLocationD
 import com.makeitvsolo.rainytoday.service.exception.account.AccountDoesNotExistsException;
 import com.makeitvsolo.rainytoday.service.exception.favourite.AlreadyInFavouritesException;
 import com.makeitvsolo.rainytoday.service.exception.favourite.NotInFavouritesException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/favourites")
+@Tag(name = "favourites")
 public class FavouriteLocationController {
 
     private final FavouriteLocationService service;
@@ -25,6 +33,42 @@ public class FavouriteLocationController {
     }
 
     @PostMapping("/add")
+    @Operation(summary = "adds given location to favourites")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "location added",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "209",
+                            description = "location already exists in favourites",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "401",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    )
+            }
+    )
     public ResponseEntity<?> add(
             @RequestBody AddFavouriteRequest request,
             @AuthenticationPrincipal AccountPrincipal principal
@@ -45,11 +89,47 @@ public class FavouriteLocationController {
                            .body(new ErrorMessageResponse(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.internalServerError()
-                           .build();
+                           .body(new ErrorMessageResponse(ex.getMessage()));
         }
     }
 
     @DeleteMapping("/{id}/remove")
+    @Operation(summary = "removes given location from favourites")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "204",
+                            description = "location removed",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "209",
+                            description = "location does not exists in favourites",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "401",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    examples = {@ExampleObject(value = "{}")}
+                            )
+                    )
+            }
+    )
     public ResponseEntity<?> remove(
             @PathVariable(name = "id") Long locationId,
             @AuthenticationPrincipal AccountPrincipal principal
@@ -68,7 +148,7 @@ public class FavouriteLocationController {
                            .body(new ErrorMessageResponse(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.internalServerError()
-                           .build();
+                           .body(new ErrorMessageResponse(ex.getMessage()));
         }
     }
 }
