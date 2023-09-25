@@ -39,13 +39,35 @@ public class CoordinatesController {
                             description = "",
                             content = @Content(
                                     mediaType = "application/json",
-                                    examples = {@ExampleObject(value = "{[\n" +
-                                                                               "  {\n" +
-                                                                               "    \"name\": \"Tomsk\",\n" +
-                                                                               "    \"latitude\": 56.488712,\n" +
-                                                                               "    \"longitude\": 84.952324\n" +
-                                                                               "  }\n" +
-                                                                               "]}")}
+                                    examples = {@ExampleObject(value = """
+                                            [
+                                              {
+                                                "name": "Ontario",
+                                                "latitude": 34.065846,
+                                                "longitude": -117.6484304
+                                              },
+                                              {
+                                                "name": "Ontario",
+                                                "latitude": 44.0265525,
+                                                "longitude": -116.9629378
+                                              },
+                                              {
+                                                "name": "Town of Ontario",
+                                                "latitude": 43.2208968,
+                                                "longitude": -77.2830421
+                                              },
+                                              {
+                                                "name": "Ontario",
+                                                "latitude": 40.7595418,
+                                                "longitude": -82.5901658
+                                              },
+                                              {
+                                                "name": "Ontario",
+                                                "latitude": 43.7258037,
+                                                "longitude": -90.59152
+                                              }
+                                            ]
+                                            """)}
                             )
                     ),
                     @ApiResponse(
