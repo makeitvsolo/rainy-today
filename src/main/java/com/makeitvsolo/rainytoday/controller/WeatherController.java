@@ -38,33 +38,37 @@ public class WeatherController {
                             description = "weather on favourite locations",
                             content = @Content(
                                     mediaType = "application/json",
-                                    examples = {@ExampleObject(value = "{[{\n" +
-                                                                               "    \"summary\": \"Clouds\",\n" +
-                                                                               "    \"description\": \"broken clouds\",\n" +
-                                                                               "    \"location\": {\n" +
-                                                                               "      \"id\": 1,\n" +
-                                                                               "      \"location\": \"Omsk\",\n" +
-                                                                               "      \"latitude\": 54.99,\n" +
-                                                                               "      \"longitude\": 73.37\n" +
-                                                                               "    },\n" +
-                                                                               "    \"dateTime\": \"2023-09-25T14:12:09Z\",\n" +
-                                                                               "    \"temperature\": {\n" +
-                                                                               "      \"average\": 15.55,\n" +
-                                                                               "      \"min\": 15.55,\n" +
-                                                                               "      \"max\": 15.99\n" +
-                                                                               "    },\n" +
-                                                                               "    \"pressure\": {\n" +
-                                                                               "      \"seaLevel\": 0,\n" +
-                                                                               "      \"groundLevel\": 0\n" +
-                                                                               "    },\n" +
-                                                                               "    \"humidity\": 67,\n" +
-                                                                               "    \"cloudiness\": 75,\n" +
-                                                                               "    \"wind\": {\n" +
-                                                                               "      \"speed\": 1,\n" +
-                                                                               "      \"direction\": 210,\n" +
-                                                                               "      \"gust\": 0\n" +
-                                                                               "    }\n" +
-                                                                               "  },]}")}
+                                    examples = {@ExampleObject(value = """
+                                            [
+                                              {
+                                                "summary": "Haze",
+                                                "description": "haze",
+                                                "location": {
+                                                  "id": 1,
+                                                  "location": "Ontario",
+                                                  "latitude": 34.07,
+                                                  "longitude": -117.65
+                                                },
+                                                "dateTime": "2023-09-25T15:05:04Z",
+                                                "temperature": {
+                                                  "average": 17,
+                                                  "min": 12.99,
+                                                  "max": 22.98
+                                                },
+                                                "pressure": {
+                                                  "seaLevel": 0,
+                                                  "groundLevel": 0
+                                                },
+                                                "humidity": 79,
+                                                "cloudiness": 0,
+                                                "wind": {
+                                                  "speed": 3.09,
+                                                  "direction": 250,
+                                                  "gust": 0
+                                                }
+                                              }
+                                            ]
+                                            """)}
                             )
                     ),
                     @ApiResponse(

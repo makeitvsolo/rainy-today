@@ -46,7 +46,7 @@ public class FavouriteLocationController {
                             )
                     ),
                     @ApiResponse(
-                            responseCode = "209",
+                            responseCode = "409",
                             description = "location already exists in favourites",
                             content = @Content(
                                     mediaType = "application/json",
@@ -107,7 +107,7 @@ public class FavouriteLocationController {
                             )
                     ),
                     @ApiResponse(
-                            responseCode = "209",
+                            responseCode = "409",
                             description = "location does not exists in favourites",
                             content = @Content(
                                     mediaType = "application/json",
