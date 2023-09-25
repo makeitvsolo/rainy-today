@@ -7,7 +7,9 @@ import com.makeitvsolo.rainytoday.service.dto.favourite.RemoveFavouriteLocationD
 import com.makeitvsolo.rainytoday.service.exception.account.AccountDoesNotExistsException;
 import com.makeitvsolo.rainytoday.service.exception.favourite.AlreadyInFavouritesException;
 import com.makeitvsolo.rainytoday.service.exception.favourite.NotInFavouritesException;
+import org.springframework.stereotype.Service;
 
+@Service
 public final class FavouriteLocationService {
 
     private final AccountRepository repository;
